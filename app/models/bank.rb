@@ -5,15 +5,18 @@ class Bank < ActiveRecord::Base
   validates :routing_number, presence: true
   validates :name, presence: true
 
+  def self.raketask
+    puts 'model task'
+  end
 
   def self.fetch_bank_info
-    open("#{Rails.root}/app/models/concerns/test.txt", 'wb') do |file|
+    open("#{Rails.root}/app/models/concerns/bank_info.txt", 'wb') do |file|
       file << open('http://www.fededirectory.frb.org/FedACHdir.txt').read
     end
   end
 
   def self.parse_bank_info
-    File.readlines("#{Rails.root}/app/models/concerns/test.txt").each do |line|
+    File.readlines("#{Rails.root}/app/models/concerns/bank_info.txt").each do |line|
       next if line.empty? || line.nil?
       bank_match = /^(\d{9}).{26}(.{36})(.{36})(.{20})(\D{2})?(\d{9})(.{10})/.match(line)
       bank_data = create_hash(bank_match)
