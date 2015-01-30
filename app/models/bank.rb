@@ -29,6 +29,23 @@ class Bank < ActiveRecord::Base
     end
   end
 
+  def output_json
+    {
+      name: self.name,
+      routing_number: self.routing_number,
+      record_type: "Record Type",
+      phone_number: self.phone_number,
+      address:
+      {
+        street: self.street,
+        street_2: nil,
+        city: self.city,
+        state: self.state,
+        zip_code: self.zip_code
+      }
+    }
+  end
+
   private
 
   def self.create_hash(bank_data)
@@ -55,20 +72,4 @@ class Bank < ActiveRecord::Base
     }
   end
 
-  def output_json
-    {
-      name: self.name,
-      routing_number: self.routing_number,
-      record_type: "Record Type",
-      phone_number: self.phone_number,
-      address:
-      {
-        street: self.street,
-        street_2: nil,
-        city: self.city,
-        state: self.state,
-        zip_code: self.zip_code
-      }
-    }
-  end
 end
