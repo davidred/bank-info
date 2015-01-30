@@ -1,0 +1,24 @@
+
+<h1>Find Banks By Routing Number</h1>
+<form class="form-inline" action="/banks" method="get">
+  <div class="form-group">
+    <input class="form-control"
+    type="text"
+    name="routing_number"
+    placeholder="Enter Routing Number">
+    <input type="submit" class="btn btn-primary" value="Search">
+  </div>
+</form>
+
+<br>
+<% if @bank %>
+<div class="well">
+  <address>
+    <strong><%= @bank.name %></strong><br>
+    <%= @bank.street %><br>
+    <%= @bank.city + ", " + @bank.state + " " + @bank.zip_code %><br>
+    <abbr title="Phone">P:</abbr>
+    <%= "(" + @bank.phone_number[0..2] + ") " + @bank.phone_number[3..5] + "-"+ @bank.phone_number[6..9] %>
+  </address>
+</div>
+<% end %>

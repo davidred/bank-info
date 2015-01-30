@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BankLookup</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
+<body>
+
+
+<div class="container">
+
+  <% unless flash[:errors].nil? %>
+  <div class="alert alert-danger" role="alert"><%= flash[:errors][0] %></div>
+  <% end %>
+
+  <%= yield %>
+
+</div>
+
+</body>
+</html>
