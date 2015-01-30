@@ -30,5 +30,6 @@ group :development do
 end
 
 gem 'bootstrap-sass'
+gem 'rails_12factor'
 gem 'rspec'
 gem 'delayed_job_active_record'
